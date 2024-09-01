@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +19,7 @@ public class Main {
         students.add(Amini);
 
         System.out.println("Simple print");
-//        System.out.println(students);
+//        students.forEach(y -> System.out.println(y));
 
         System.out.println("****************************************");
         System.out.println("loop via iterator and toString");
@@ -31,8 +29,50 @@ public class Main {
 //            System.out.println(student.toString());
         }
 
-
+        System.out.println("****************************************");
+        System.out.println("sort by grade : ");
         students.sort((o1, o2) -> (int)(o1.getGrade()-o2.getGrade()));
-        System.out.println(students);
+//        System.out.println(students);
+//        students.forEach(y -> System.out.println(y));
+
+        System.out.println("****************************************");
+        System.out.println("collecting Age : ");
+        Map<Integer , List<Student>> collectAge = students.stream().collect(Collectors.groupingBy(Student::getAge));
+//        System.out.println(collectAge);
+
+        System.out.println("****************************************");
+        System.out.println("group by grades : ");
+        System.out.println("students who has pass the exam  : ");
+        Map<Boolean, List<Student>> groupedByGrade = students.stream()
+                .collect(Collectors.partitioningBy(student -> student.getGrade() >= 10));
+        groupedByGrade.get(true).forEach(y -> System.out.println(y));
+        System.out.println("Students who has been failed : ");
+        groupedByGrade.get(false).forEach(y-> System.out.println(y));
+
+        Map<Boolean , List<Student>> groupByAge = students.stream()
+                .collect(Collectors.groupingBy(y -> y.getAge() >= 18));
+        System.out.println("****************************************");
+        System.out.println("group by ages : ");
+        System.out.println("students at college (age>18) : ");
+        groupByAge.get(true).forEach(y-> System.out.println(y));
+        System.out.println("students at school (age<18) : ");
+        groupByAge.get(false).forEach(y-> System.out.println(y));
+
+
+        System.out.println("****************************************");
+        double averageGrade = students
+                .stream()
+                .mapToDouble(y -> y.getGrade())
+                .average()
+                .getAsDouble();
+        System.out.println("Average Grade : " + averageGrade);
+
+        System.out.println("****************************************");
+        double collegeAverageGrade = groupByAge.get(true)
+                .stream()
+                .mapToDouble(y -> y.getGrade())
+                .average()
+                .getAsDouble();
+        System.out.println("Average Grade of students of college : " + collegeAverageGrade);
     }
 }
