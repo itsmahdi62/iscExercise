@@ -33,12 +33,12 @@ public class Main {
         System.out.println("sort by grade : ");
         students.sort((o1, o2) -> (int)(o1.getGrade()-o2.getGrade()));
 //        System.out.println(students);
-//        students.forEach(y -> System.out.println(y));
+        students.forEach(y -> System.out.println(y));
 
         System.out.println("****************************************");
         System.out.println("collecting Age : ");
         Map<Integer , List<Student>> collectAge = students.stream().collect(Collectors.groupingBy(Student::getAge));
-//        System.out.println(collectAge);
+        System.out.println(collectAge);
 
         System.out.println("****************************************");
         System.out.println("group by grades : ");
