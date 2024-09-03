@@ -3,9 +3,11 @@ package itemsCurroptedItems.items.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity(name = "CorruptedItem")
 @Table(name = "CorruptedItem")
-public class CorruptedItem {
+public class CorruptedItem  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

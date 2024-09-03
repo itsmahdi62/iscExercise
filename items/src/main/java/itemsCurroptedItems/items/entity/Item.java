@@ -2,9 +2,11 @@ package itemsCurroptedItems.items.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity(name = "Item")
 @Table(name = "Item")
-public class Item {
+public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

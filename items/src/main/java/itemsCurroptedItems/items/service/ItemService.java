@@ -18,8 +18,14 @@ public class ItemService {
     }
 
     @Transactional
-    public void save(Item item) {
-        itemsRepository.save(item);
+    public String save(Item item) {
+        try{
+            itemsRepository.save(item);
+            return "item saved ";
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return "d";
     }
 
     public List<Item>  getAll() {

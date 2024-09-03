@@ -4,6 +4,7 @@ import itemsCurroptedItems.items.entity.Item;
 import itemsCurroptedItems.items.service.ItemService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,14 +16,14 @@ public class ItemsController {
     }
 
     @GetMapping("/getAll")
-    public void save() {
-         itemService.getAll();
+    public List<Item> save() {
+        return  itemService.getAll();
     }
 
     @PostMapping("/save")
-    public Object insert(@ModelAttribute Item item) {
-        itemService.save(item);
-        return item;
+    public String insert(@ModelAttribute Item item) {
+        return itemService.save(item);
+
     }
 
     @PostMapping("/edit")
