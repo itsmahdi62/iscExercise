@@ -22,18 +22,18 @@ public class ItemsController {
 
     @PostMapping("/save")
     public String insert(@RequestBody Item item) {
-        System.out.println(item.toString());
         return itemService.save(item);
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/edit/{id}")
     public Object update(@PathVariable long id ,@RequestBody Item newItem){
+//        System.out.println(newItem.toString()+id);
         return itemService.update( newItem , id);
     }
 
-    @PostMapping("/remove")
-    public  void delete(@ModelAttribute Item item){
-        itemService.delete(item);
+    @PostMapping("/remove/{id}")
+    public  void delete(@PathVariable long id){
+        itemService.delete(id);
     }
 
 }

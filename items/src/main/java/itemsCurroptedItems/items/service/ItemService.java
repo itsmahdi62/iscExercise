@@ -22,6 +22,8 @@ public class ItemService {
         try{
             Item insertItem = new Item().setName(item.getName()).setCatalog(item.getCatalog()).setPrice(item.getPrice());
             itemsRepository.save(insertItem);
+//            System.out.println(item.toString());
+//            System.out.println(insertItem.toString());
             return "item saved ";
         }catch (Exception e){
             System.out.println(e);
@@ -40,18 +42,22 @@ public class ItemService {
             existingItem.setName(newItem.getName());
             existingItem.setCatalog(newItem.getCatalog());
             existingItem.setPrice(newItem.getPrice());
-            return itemsRepository.save(existingItem);
+            itemsRepository.save(existingItem);
+            return existingItem;
         } else {
             // Handle the case where the item is not found (e.g., throw an exception)
             throw new RuntimeException("Item not found with id: " + id);
         }
     }
-    public Optional<Item> findOneById(long id) {
-        return  itemsRepository.findById(id);
+    public String findOneById(long id) {
+        itemsRepository.findById(id);
+        return  "ss";
     }
 
-    public void delete(Item item){
-        itemsRepository.delete(item);
+    public void delete(Long id){
+        Item deleteItem =
+        itemsRepository.delete(deleteItem);
+
     }
     public Item findByName(String name ){
         return itemsRepository.findItemByName(name);

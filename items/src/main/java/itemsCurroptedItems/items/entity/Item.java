@@ -14,6 +14,10 @@ public class Item implements Serializable {
     private String catalog;
     private int price;
 
+    public long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -44,7 +48,8 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return "Item{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", catalog='" + catalog + '\'' +
                 ", price=" + price +
                 '}';
