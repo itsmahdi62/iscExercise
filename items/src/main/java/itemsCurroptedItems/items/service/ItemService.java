@@ -20,7 +20,8 @@ public class ItemService {
     @Transactional
     public String save(Item item) {
         try{
-            itemsRepository.save(item);
+            Item insertItem = new Item().setName(item.getName()).setCatalog(item.getCatalog()).setPrice(item.getPrice());
+            itemsRepository.save(insertItem);
             return "item saved ";
         }catch (Exception e){
             System.out.println(e);
@@ -51,5 +52,8 @@ public class ItemService {
 
     public void delete(Item item){
         itemsRepository.delete(item);
+    }
+    public Item findByName(String name ){
+        return itemsRepository.findItemByName(name);
     }
 }

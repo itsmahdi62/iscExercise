@@ -21,13 +21,13 @@ public class ItemsController {
     }
 
     @PostMapping("/save")
-    public String insert(@ModelAttribute Item item) {
+    public String insert(@RequestBody Item item) {
+        System.out.println(item.toString());
         return itemService.save(item);
-
     }
 
     @PostMapping("/edit")
-    public Object update(@PathVariable long id ,@ModelAttribute Item newItem){
+    public Object update(@PathVariable long id ,@RequestBody Item newItem){
         return itemService.update( newItem , id);
     }
 
@@ -35,4 +35,5 @@ public class ItemsController {
     public  void delete(@ModelAttribute Item item){
         itemService.delete(item);
     }
+
 }

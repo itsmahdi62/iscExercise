@@ -13,6 +13,17 @@ public class CorruptedItem  implements Serializable {
     private long id;
     private String name;
     private String reason;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Item item;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public CorruptedItem setItem(Item item) {
+        this.item = item;
+        return this;
+    }
 
     public String getName() {
         return name;

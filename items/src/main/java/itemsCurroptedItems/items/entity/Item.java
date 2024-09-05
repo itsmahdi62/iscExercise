@@ -10,22 +10,9 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String name;
     private String catalog;
     private int price;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private CorruptedItem corruptedItem ;
-
-    public CorruptedItem getCorruptedItem() {
-        return corruptedItem;
-    }
-
-    public Item setCorruptedItem(CorruptedItem corruptedItem) {
-        this.corruptedItem = corruptedItem;
-        return this;
-    }
 
     public String getName() {
         return name;
@@ -52,5 +39,14 @@ public class Item implements Serializable {
     public Item setPrice(int price) {
         this.price = price;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", catalog='" + catalog + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
