@@ -4,6 +4,7 @@ package itemsCurroptedItems.items.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Entity(name = "CorruptedItem")
 @Table(name = "CorruptedItem")

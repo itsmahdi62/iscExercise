@@ -53,7 +53,7 @@ public class ItemService {
         System.out.println( itemsRepository.findById(id).toString());
         return  itemsRepository.findById(id);
     }
-
+    @Transactional
     public void delete(Long id) {
         // logical delete was better
         Optional<Item> deleteItemOptional = findOneById(id);
