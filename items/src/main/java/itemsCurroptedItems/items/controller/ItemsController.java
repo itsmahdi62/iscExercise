@@ -35,5 +35,4 @@ public class ItemsController {
     public  void delete(@PathVariable long id){
         itemService.delete(id);
     }
-
 }

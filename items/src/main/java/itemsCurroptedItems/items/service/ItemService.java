@@ -49,15 +49,23 @@ public class ItemService {
             throw new RuntimeException("Item not found with id: " + id);
         }
     }
-    public String findOneById(long id) {
-        itemsRepository.findById(id);
-        return  "ss";
+    public Optional<Item> findOneById(long id) {
+        System.out.println( itemsRepository.findById(id).toString());
+        return  itemsRepository.findById(id);
     }
 
-    public void delete(Long id){
-        Item deleteItem =
-        itemsRepository.delete(deleteItem);
+    public void delete(Long id) {
+        // logical delete was better
+        Optional<Item> deleteItemOptional = findOneById(id);
+        System.out.println(deleteItemOptional.toString());
+        System.out.println(id);
+        if (deleteItemOptional.isPresent()) {
+            Item deleteItem = deleteItemOptional.get();
 
+            itemsRepository.delete(deleteItem);
+        } else {
+            throw new RuntimeException("Item not found with id: " + id);
+        }
     }
     public Item findByName(String name ){
         return itemsRepository.findItemByName(name);
